@@ -1,0 +1,9 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-primary);
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  font-weight: 700;
+}

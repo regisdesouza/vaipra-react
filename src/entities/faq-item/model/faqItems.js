@@ -1,0 +1,16 @@
+export const faqItems = [
+  { id: 'surpresa', question: 'Como funciona a surpresa?',
+    answer: 'Você escolhe orçamento e clima. Nós escolhemos o destino e só revelamos no aeroporto.' },
+  { id: 'vetar', question: 'Posso vetar lugares onde já estive?',
+    answer: 'Sim! Na hora da compra você marca até 3 destinos que não quer.' },
+  { id: 'nao-gostar', question: 'E se eu não gostar do destino?',
+    answer: 'O Plano B permite trocar sem custo adicional (nos pacotes Semana e Sem Limites).' },
+  { id: 'incluso', question: 'Passagens e hospedagem estão inclusas?',
+    answer: 'Sim, todos os pacotes incluem passagens e hospedagem. O que muda é a duração e o tipo de destino.' },
+  { id: 'passaporte', question: 'Preciso de passaporte?',
+    answer: 'Só se o destino for internacional. Avisamos com antecedência.' },
+  { id: 'grupo', question: 'Posso viajar em grupo?',
+    answer: 'Pode! Cada pessoa escolhe o pacote e todos recebem o mesmo destino.' },
+  { id: 'cancelar', question: 'Posso cancelar?',
+    answer: 'Cancelamento grátis em até 48 horas após a compra.' },
+];

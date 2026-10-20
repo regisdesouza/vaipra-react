@@ -1,0 +1,105 @@
+.hero {
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(3rem, 8vw, 5rem);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem;
+  max-width: 860px;
+  margin-bottom: 3rem;
+}
+
+.subtitle {
+  max-width: 620px;
+  color: var(--color-text-muted);
+  font-size: 1.2rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Painel grande, no lugar da foto de destaque */
+.panel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(2rem, 6vw, 4.5rem) 1.25rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #ffb45e 100%);
+  border-radius: var(--radius-lg);
+}
+
+.pass {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  animation: float 4s ease-in-out infinite;
+}
+
+.deco {
+  position: absolute;
+  opacity: 0.5;
+  font-size: clamp(3rem, 8vw, 6rem);
+  user-select: none;
+}
+
+.decoOne {
+  top: 8%;
+  left: 6%;
+}
+
+.decoTwo {
+  top: 12%;
+  right: 8%;
+}
+
+.decoThree {
+  bottom: 6%;
+  left: 12%;
+}
+
+.stats {
+  display: grid;
+  gap: 1.5rem;
+  margin: 3rem 0 0;
+}
+
+.stat {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.value {
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.label {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@media (min-width: 640px) {
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,44 @@
+.section {
+  padding: clamp(4rem, 9vw, 7rem) 0;
+}
+
+.steps {
+  display: grid;
+  gap: 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--color-border);
+}
+
+.step h3 {
+  margin-block: 0.75rem 0.5rem;
+  font-size: 1.3rem;
+}
+
+.step p {
+  color: var(--color-text-muted);
+}
+
+.number {
+  color: var(--color-primary);
+  font-family: var(--font-title);
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+@media (min-width: 640px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

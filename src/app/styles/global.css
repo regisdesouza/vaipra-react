@@ -1,0 +1,114 @@
+/* Variáveis, reset e base. Único arquivo de estilos globais do projeto. */
+
+:root {
+  --color-bg: #0b1b3a;
+  --color-bg-alt: #102650;
+  --color-primary: #ff7a3d;
+  --color-primary-hover: #e8652b;
+  --color-accent: #ffd166;
+  --color-text: #f6f8fc;
+  --color-text-muted: #b8c2d9;
+  --color-card: #15305f;
+  --color-border: rgba(246, 248, 252, 0.12);
+
+  --radius-sm: 12px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+  --font-title: 'Poppins', system-ui, sans-serif;
+  --font-text: 'Inter', system-ui, sans-serif;
+}
+
+/* Reset simples */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-text);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+/* Títulos */
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 7vw, 4.75rem);
+}
+
+h2 {
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+}
+
+/* Foco visível para teclado */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Evita que o header fixo cubra o título da seção ao rolar pela âncora */
+section[id] {
+  scroll-margin-top: 5rem;
+}
