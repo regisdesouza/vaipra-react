@@ -2,10 +2,9 @@
 
 > Você escolhe o clima. A gente escolhe o destino.
 
-## Integrantes
+## Criador
 
-- [PREENCHER: nome 1]
-- [PREENCHER: nome 2, ou apague esta linha se for individual]
+- Reginaldo d Souza Lima
 
 ## Sobre o produto
 
