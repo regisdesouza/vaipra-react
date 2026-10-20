@@ -2,9 +2,9 @@
 
 > Você escolhe o clima. A gente escolhe o destino.
 
-## Integrantes
+## Criador
 
-- Escreva aqui o seu nome (e o do seu parceiro, se for dupla)
+- Reginaldo de Souza Lima
 
 ## Sobre o produto
 
