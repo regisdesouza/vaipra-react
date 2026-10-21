@@ -65,7 +65,7 @@ Durante a construção, algumas alternativas foram colocadas na mesa e decididas
 - CSS Modules
 - Feature-Sliced Design
 - Git e GitHub
-- Claude (Anthropic), pelo chat do claude.ai
+- OpenCode(Neomotron 3.5) e Claude 
 
 ### Uso de IA
 
