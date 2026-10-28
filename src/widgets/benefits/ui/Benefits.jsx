@@ -5,7 +5,7 @@ const benefits = [
   { icon: '🎲', tone: 'dark', title: 'Surpresa de verdade', text: 'Nem você sabe para onde vai até o embarque.' },
   { icon: '🧳', tone: 'orange', title: 'Tudo pronto', text: 'Passagem, hospedagem e roteiro já incluídos.' },
   { icon: '💸', tone: 'orange', title: 'Cabe no seu bolso', text: 'Você define o orçamento, a gente respeita.' },
-  { icon: '🌤️', tone: 'dark', title: 'Clima sob medida', text: 'Calor, frio, ameno ou aventura: você escolhe.' },
+  { icon: '🌤️', tone: 'dark', title: 'Clima sob medida', text: 'Escolha a faixa de temperatura e a gente acha o lugar.' },
   { icon: '🛡️', tone: 'dark', title: 'Plano B garantido', text: 'Se o destino não rolar, trocamos sem custo.' },
   { icon: '📸', tone: 'yellow', title: 'Memórias que contam história', text: 'Viagens que viram a melhor história do ano.' },
 ];

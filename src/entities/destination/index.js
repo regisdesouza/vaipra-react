@@ -1,1 +1,1 @@
-export { destinations, budgetOptions, climateOptions } from './model/destinations.js';
+export { destinations, budgetOptions, climateOptions, tempCheckedAt } from './model/destinations.js';

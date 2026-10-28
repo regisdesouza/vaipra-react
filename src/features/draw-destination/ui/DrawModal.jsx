@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Modal, BoardingPass } from '@/shared/ui';
-import { budgetOptions, climateOptions } from '@/entities/destination';
-import { loadingMessages, pickDestination } from '../model/pickDestination.js';
+import { budgetOptions, climateOptions, tempCheckedAt } from '@/entities/destination';
+import { airportMessages, loadingMessages, pickDestination } from '../model/pickDestination.js';
 import styles from './DrawModal.module.css';
 
 const titles = {
@@ -9,29 +9,32 @@ const titles = {
   loading: 'Sorteando...',
   result: 'Seu destino secreto está pronto!',
   reserved: 'Reserva confirmada!',
+  checkin: 'Rumo ao aeroporto...',
+  airport: 'Bem-vindo ao aeroporto!',
 };
 
 function DrawModal({ isOpen, onClose }) {
-  // step: 'form' | 'loading' | 'result' | 'reserved'
   const [step, setStep] = useState('form');
   const [budget, setBudget] = useState('');
   const [climate, setClimate] = useState('');
   const [destination, setDestination] = useState(null);
   const [messageIndex, setMessageIndex] = useState(0);
 
-  // Durante o "loading": troca a mensagem a cada 800 ms e termina em 2,5 s.
-  // O destino sorteado fica guardado, mas NUNCA é mostrado: só as pistas.
-  // A revelação acontece apenas no aeroporto (fora desta simulação).
   useEffect(() => {
-    if (step !== 'loading') return;
+    if (step !== 'loading' && step !== 'checkin') return;
 
+    const messages = step === 'loading' ? loadingMessages : airportMessages;
     setMessageIndex(0);
     const messageTimer = setInterval(() => {
-      setMessageIndex((index) => (index + 1) % loadingMessages.length);
+      setMessageIndex((index) => (index + 1) % messages.length);
     }, 800);
     const endTimer = setTimeout(() => {
-      setDestination(pickDestination(budget, climate));
-      setStep('result');
+      if (step === 'loading') {
+        setDestination(pickDestination(budget, climate));
+        setStep('result');
+      } else {
+        setStep('airport');
+      }
     }, 2500);
 
     return () => {
@@ -53,6 +56,7 @@ function DrawModal({ isOpen, onClose }) {
   }
 
   const canDraw = budget !== '' && climate !== '';
+  const waitingMessages = step === 'checkin' ? airportMessages : loadingMessages;
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} title={titles[step]}>
@@ -77,7 +81,7 @@ function DrawModal({ isOpen, onClose }) {
           </fieldset>
 
           <fieldset className={styles.group}>
-            <legend>Que clima você quer?</legend>
+            <legend>Qual temperatura você quer encontrar?</legend>
             <div className={styles.options}>
               {climateOptions.map((option) => (
                 <button
@@ -87,7 +91,10 @@ function DrawModal({ isOpen, onClose }) {
                   aria-pressed={climate === option.value}
                   onClick={() => setClimate(option.value)}
                 >
-                  <span aria-hidden="true">{option.emoji}</span> <strong>{option.label}</strong>
+                  <strong>
+                    <span aria-hidden="true">{option.emoji}</span> {option.label}
+                  </strong>
+                  <span className={styles.hint}>{option.hint}</span>
                 </button>
               ))}
             </div>
@@ -99,10 +106,12 @@ function DrawModal({ isOpen, onClose }) {
         </div>
       )}
 
-      {step === 'loading' && (
+      {(step === 'loading' || step === 'checkin') && (
         <div className={styles.loading}>
-          <span className={styles.plane} aria-hidden="true">✈️</span>
-          <p aria-live="polite">{loadingMessages[messageIndex]}</p>
+          <span className={styles.plane} aria-hidden="true">
+            {step === 'checkin' ? '🧳' : '✈️'}
+          </span>
+          <p aria-live="polite">{waitingMessages[messageIndex]}</p>
         </div>
       )}
 
@@ -114,6 +123,9 @@ function DrawModal({ isOpen, onClose }) {
           </p>
           <p>
             <strong>Pista:</strong> {destination.teaser}
+          </p>
+          <p>
+            <strong>Temperatura média:</strong> cerca de {destination.temp} °C
           </p>
           <p>
             <strong>Na mala:</strong> {destination.packTip}
@@ -138,9 +150,27 @@ function DrawModal({ isOpen, onClose }) {
           <p className={styles.reveal}>🎉 Reserva simulada!</p>
           <p>
             Seu destino continua secreto. Ele será revelado só no aeroporto, na hora do check-in.
-            Em um projeto real, você receberia um e-mail com os horários.
           </p>
-          <Button onClick={handleClose}>Fechar</Button>
+          <Button onClick={() => setStep('checkin')}>🛫 Simular que estou no aeroporto</Button>
+          <div className={styles.extra}>
+            <Button variant="ghost" size="sm" onClick={handleClose}>
+              Fechar
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {step === 'airport' && destination && (
+        <div className={styles.result}>
+          <BoardingPass destination={destination.name} revealed />
+          <p className={styles.reveal}>
+            <span aria-hidden="true">{destination.emoji}</span> Você vai para {destination.name}!
+          </p>
+          <p aria-live="polite">
+            {destination.name}, {destination.country}. Temperatura média de cerca de {destination.temp} °C.
+          </p>
+          <p className={styles.hint}>Temperaturas consultadas em {tempCheckedAt}.</p>
+          <Button onClick={handleClose}>Boa viagem!</Button>
         </div>
       )}
     </Modal>
